@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "name": "regextend",
+  "description": "Extended regexes - captures the offset of regex capturing groups",
+  "keywords": [
+    "regex",
+    "regexp",
+    "offset"
+  ],
+  "homepage": "https://github.com/asmblah/regextend",
+  "author": "Dan Phillimore <dan@ovms.co> (http://ovms.co)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asmblah/regextend"
+  },
+  "bugs": {
+    "email": "dan@ovms.co",
+    "url": "https://github.com/asmblah/regextend/issues"
+  },
+  "main": "index",
+  "scripts": {
+    "jshint": "jshint .",
+    "mocha": "mocha -r test/harness --recursive test/unit/",
+    "test": "npm run jshint && npm run mocha"
+  },
+  "dependencies": {
+    "microdash": "~1"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "jshint": "^2.10.2",
+    "mocha": "^6.2.0",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.14.0"
+  },
+  "engines": {
+    "node": ">=0.6"
+  },
+  "license": "MIT"
+}
