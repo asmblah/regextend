@@ -20,16 +20,44 @@
 function ExtendedRegExp(pattern, flags) {
     var addedGroups = 0;
 
+    flags = flags || '';
+
     // TODO - handle 's' flag (dotall)
 
     // TODO - handle 'y' flag (sticky) - see https://github.com/slevithan/xregexp/blob/master/src/xregexp.js#L835
 
+    // Handle 'x' flag (extended) - allows regexes to be formatted with whitespace and comments added
+    if (flags.indexOf('x') > -1) {
+        // Strip from the flags string so it is not passed to the RegExp constructor
+        flags = flags.replace(/x/g, '');
+
+        pattern = pattern.replace(
+            /((?:^|[^[\\])(?:\\{2})+|[^[\\]|^)(?:(\[[^\]]*]))|(\\\s)|#.*(?:\n|$)|\s+/g,
+            function (all, escapePrefix, characterClass, escapedWhitespace) {
+                if (characterClass) {
+                    // Don't match whitespace inside character classes
+                    return all;
+                }
+
+                if (escapedWhitespace) {
+                    return all;
+                }
+
+                return '';
+            }
+        );
+    }
+
     this.flags = flags;
     this.pattern = pattern;
 
-    // Before every normal capturing group, add a lookahead that contains a capturing group
-    // that captures the entire rest of the string. Later, we can use this to determine
-    // the offset of the group that it precedes by subtracting this length from the entire input length.
+    /*
+     * Before every normal capturing group, add a lookahead that contains a capturing group
+     * that captures the entire rest of the string. Later, we can use this to determine
+     * the offset of the group that it precedes by subtracting this length from the entire input length.
+     * Note that we explicitly match character classes here but return them unchanged,
+     * in order to prevent any parentheses inside being recognised as a capturing group.
+     */
     pattern = pattern.replace(
         /((?:^|[^[\\])(?:\\{2})+|[^[\\]|^)(?:(\[[^\]]*])|\((?!\?))|\\(\d\d?)/g,
         function (all, escapePrefix, characterClass, backrefNumber) {
