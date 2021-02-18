@@ -97,9 +97,9 @@ ExtendedRegExp.prototype.exec = function (string) {
 };
 
 /**
- * Executes a search for a match in a specified string. Returns true if a match is found, false otherwise.
+ * Executes a search and replace for the specified string. Returns the resulting string with replacements made.
  *
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace}
  *
  * @param {string} string
  * @param {string|Function} replacement
