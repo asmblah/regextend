@@ -1,6 +1,8 @@
 Regextend
 =========
 
+[![Build Status](https://github.com/asmblah/regextend/workflows/CI/badge.svg)](https://github.com/asmblah/regextend/actions?query=workflow%3ACI)
+
 Regexes, only extended.
 
 Features
