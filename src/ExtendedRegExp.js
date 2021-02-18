@@ -106,6 +106,8 @@ ExtendedRegExp.prototype.exec = function (string) {
  * @return {string}
  */
 ExtendedRegExp.prototype.replace = function (string, replacement) {
+    // Note that we do not need to specially handle any backreferences etc.,
+    // because we use the original regex pattern and not the rewritten one with offset capturing
     var originalNativeRegex = new RegExp(this.pattern, this.flags);
 
     return string.replace(originalNativeRegex, replacement);
