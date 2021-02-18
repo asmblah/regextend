@@ -61,6 +61,38 @@ describe('ExtendedRegExp', function () {
             ]);
         });
 
+        it('should record the offset of each capturing group when there is a character class with an opening parenthesis at start of string', function () {
+            var regex = new ExtendedRegExp('[(abc]+\\s*(second)'),
+                match = regex.exec('first a(b second');
+
+            expect([].slice.call(match)).to.deep.equal([
+                'a(b second',
+                'second'
+            ]);
+            expect(match.input).to.equal('first a(b second');
+            expect(match.index).to.equal(6);
+            expect(match.offsets).to.deep.equal([
+                6,
+                10
+            ]);
+        });
+
+        it('should record the offset of each capturing group when there is a character class with a backslash before opening parenthesis at start of string', function () {
+            var regex = new ExtendedRegExp('[\\\\(abc]+\\s*(second)'),
+                match = regex.exec('first a(\\b second');
+
+            expect([].slice.call(match)).to.deep.equal([
+                'a(\\b second',
+                'second'
+            ]);
+            expect(match.input).to.equal('first a(\\b second');
+            expect(match.index).to.equal(6);
+            expect(match.offsets).to.deep.equal([
+                6,
+                11
+            ]);
+        });
+
         it('should record the offset of each capturing group when there is an escaped opening square bracket that looks like a character class with an opening parenthesis', function () {
             var regex = new ExtendedRegExp('ab\\[c(d]e)(f)g'),
                 match = regex.exec('start ab[cd]efg then ab[cd]efg and end');

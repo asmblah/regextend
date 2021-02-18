@@ -31,7 +31,7 @@ function ExtendedRegExp(pattern, flags) {
     // that captures the entire rest of the string. Later, we can use this to determine
     // the offset of the group that it precedes by subtracting this length from the entire input length.
     pattern = pattern.replace(
-        /((?:^|[^\\])(?:\\{2})+|[^\\]|^)(?:(\[[^\]]*])|\((?!\?))|\\(\d\d?)/g,
+        /((?:^|[^[\\])(?:\\{2})+|[^[\\]|^)(?:(\[[^\]]*])|\((?!\?))|\\(\d\d?)/g,
         function (all, escapePrefix, characterClass, backrefNumber) {
             if (characterClass) {
                 // Don't match parentheses inside character classes
