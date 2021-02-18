@@ -117,7 +117,7 @@ ExtendedRegExp.prototype.replace = function (string, replacement) {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test}
  *
  * @param {string} string
- * @return {Array|null}
+ * @return {boolean}
  */
 ExtendedRegExp.prototype.test = function (string) {
     return this.nativeRegex.test(string);
