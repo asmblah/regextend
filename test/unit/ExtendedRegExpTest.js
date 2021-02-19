@@ -213,6 +213,22 @@ describe('ExtendedRegExp', function () {
                 ]);
             });
 
+            it('should preserve whitespace inside character classes', function () {
+                var regex = new ExtendedRegExp('[a ]*b?    (c)   ', 'x'),
+                    match = regex.exec('start ac end');
+
+                expect([].slice.call(match)).to.deep.equal([
+                    ' ac',
+                    'c'
+                ]);
+                expect(match.input).to.equal('start ac end');
+                expect(match.index).to.equal(5);
+                expect(match.offsets).to.deep.equal([
+                    5,
+                    7
+                ]);
+            });
+
             it('should ignore whitespace and line-comments together', function () {
                 var regex = new ExtendedRegExp(
                     '   \\ a   # First comment\n\n\n   b?    ( c  )   # Comment at the end   ', 'x'
