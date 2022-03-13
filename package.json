@@ -27,11 +27,11 @@
     "microdash": "~1"
   },
   "devDependencies": {
-    "chai": "^4.3.0",
-    "jshint": "^2.10.2",
-    "mocha": "^8.3.0",
-    "sinon": "^9.2.4",
-    "sinon-chai": "^3.5.0"
+    "chai": "^4.3.6",
+    "jshint": "^2.13.4",
+    "mocha": "^9.2.2",
+    "sinon": "^13.0.1",
+    "sinon-chai": "^3.7.0"
   },
   "engines": {
     "node": ">=0.6"
